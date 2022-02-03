@@ -94,3 +94,9 @@
     font-size: 1rem;
   }
 }
+.log__out__btn{
+  cursor: pointer;
+}
+.navbar__logo > a{
+  text-decoration: none;
+}

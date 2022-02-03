@@ -7,11 +7,15 @@ import {
   getProductDetailsReducer,
   getProductsReducer,
 } from "./reducers/productReducers";
+import { getUsersReducer } from "./reducers/usersReducer";
+import { userReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
   cart: cartReducer,
   getProducts: getProductsReducer,
   getProductDetails: getProductDetailsReducer,
+  getUsers: getUsersReducer,
+  loggedUser: userReducer,
 });
 
 const middleware = [thunk];
@@ -19,11 +23,14 @@ const middleware = [thunk];
 const cartFromLocalStorage = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : [];
-
+const userFromLocalStorage = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : undefined;
 const INITIAL_STATE = {
   cart: {
     cartItems: cartFromLocalStorage,
   },
+  loggedUser: userFromLocalStorage,
 };
 
 const store = createStore(

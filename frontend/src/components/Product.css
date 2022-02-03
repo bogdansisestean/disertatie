@@ -31,15 +31,19 @@
 }
 
 .info__button {
-  display: block;
-  width: 100%;
+  background: #dd219e;
   text-decoration: none;
-  text-align: center;
-  color: #171717;
-  background: #f4f4f4;
-  padding: 8px 16px;
-  border: 1px solid #171717;
+  color: #f4f4f4;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  width: -webkit-fill-available;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
 }
 
 .info__button:hover {

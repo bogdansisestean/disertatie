@@ -1,14 +1,21 @@
 import React from "react";
-import "./CartScreen.css";
-import { useSelector, useDispatch } from "react-redux";
+
+//*Router
 import { Link } from "react-router-dom";
 
-//Components
+//*Components
 import CartItem from "../components/CartItem";
+
+//*Redux
+import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/actions/cartActions";
 
+//*Styles
+import "./CartScreen.css";
+
 const CartScreen = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //*dispatch shortcut
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
@@ -21,7 +28,6 @@ const CartScreen = () => {
   const getCartCount = () => {
     return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
   };
-
   const getCartSubTotal = () => {
     return cartItems.reduce((price, item) => item.price * item.qty + price, 0);
   };
@@ -37,7 +43,7 @@ const CartScreen = () => {
         ) : (
           cartItems.map((item) => (
             <CartItem
-              key={item._id}
+              key={item.product}
               item={item}
               qtyChangeHandler={qtyChangeHandler}
               removeHandler={removeHandler}
