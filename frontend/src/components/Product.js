@@ -1,7 +1,7 @@
 import "./Product.css";
 import { Link } from "react-router-dom";
 
-const Product = ({ imageUrl, description, price, name, productId }) => {
+const Processes = ({ imageUrl, description, price, name, productId }) => {
   return (
     <div className="product">
       <img src={imageUrl} alt={name} />
@@ -14,11 +14,11 @@ const Product = ({ imageUrl, description, price, name, productId }) => {
         <p className="info__price">${price}</p>
 
         <Link to={`/product/${productId}`} className="info__button">
-          View
+          View Process Details
         </Link>
       </div>
     </div>
   );
 };
 
-export default Product;
+export default Processes;

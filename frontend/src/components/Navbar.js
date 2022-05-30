@@ -24,11 +24,12 @@ const NavBar = (props) => {
     dispatch(userLogOut());
     navigate("/login", { replace: true });
   };
+  
   return (
     <nav className="navbar">
       <div className="navbar__logo">
         <Link to="/login">
-          <h2>{user ? `${user.userName}'s Shopping Cart` : "Not logged in"}</h2>
+          <h2>{user ? `Engineer control pannel for ${user.userName}` : "Not logged in"}</h2>
         </Link>
       </div>
 

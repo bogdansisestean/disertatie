@@ -3,43 +3,43 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Components
-import Product from "../components/Product";
+import Processes from "../components/Product";
 
 //Actions
-import { getProducts as listProducts } from "../redux/actions/productActions";
+import { getProcesses as listProcesses } from "../redux/actions/processActions";
 import { useNavigate } from "react-router-dom";
 
 function HomeScreen() {
   const dispatch = useDispatch();
 
-  const getProducts = useSelector((state) => state.getProducts);
+  const getProcesses = useSelector((state) => state.getProcesses);
   const getUser = useSelector((state) => state.loggedUser);
 
   const { user, loggedIn } = getUser;
-  const { products, loading, error } = getProducts;
+  const { processes, loading, error } = getProcesses;
 
   useEffect(() => {
-    dispatch(listProducts());
+    dispatch(listProcesses());
   }, []);
-  
-  if (products) {
+
+  if (processes) {
     return (
       <div className="homescreen">
-        <h2 className="homescreen__title">Product Feed</h2>
+        <h2 className="homescreen__title">Processes</h2>
         <div className="homescreen__products">
           {loading ? (
             <h2>Loading...</h2>
           ) : error ? (
             <h2>{error}</h2>
           ) : (
-            products.map((product) => (
-              <Product
-                key={product._id}
-                name={product.name}
-                description={product.description}
-                price={product.price}
-                imageUrl={product.imageUrl}
-                productId={product._id}
+            processes.map((process) => (
+              <Processes
+                key={process._id}
+                name={process.name}
+                description={process.description}
+                price={process.price}
+                imageUrl={process.imageUrl}
+                productId={process._id}
               />
             ))
           )}

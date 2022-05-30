@@ -1,16 +1,16 @@
 require("dotenv").config();
 
-const productData = require("./data/products");
 const usersData = require("./data/dummy-users");
+const processesData = require("./data/processes")
 const connectDB = require("./config/db");
-const Product = require("./models/Product");
 const Users = require("./models/Users");
+const Processes = require("./models/Processes")
 
 const importData = async () => {
   try {
-    await Product.deleteMany({});
+    await Processes.deleteMany({});
 
-    await Product.insertMany(productData);
+    await Processes.insertMany(processesData);
 
     await Users.deleteMany({});
 

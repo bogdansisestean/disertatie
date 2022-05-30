@@ -1,11 +1,11 @@
 import "./ProductScreen.css";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useHistory } from "react-router-dom";
 
 //Actions
 
-import { getProductDetails } from "../redux/actions/productActions";
+import { getProcessDetails } from "../redux/actions/processActions";
 import { addToCart } from "../redux/actions/cartActions";
 
 const ProductScreen = () => {
@@ -14,26 +14,31 @@ const ProductScreen = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  console.log("params", params);
-  console.log("navigate", navigate);
+  console.log(navigate);
 
-  const productDetails = useSelector((state) => state.getProductDetails);
-  const { loading, error, product } = productDetails;
-
+  const processDetails = useSelector((state) => state.getProcessDetails);
+  const { loading, error, process } = processDetails;
+console.log({process})
   useEffect(() => {
-    if (product && params.id !== product._id) {
-      dispatch(getProductDetails(params.id));
+    if (process && params.id !== process._id) {
+      dispatch(getProcessDetails(params.id));
+    } else {
     }
-  }, [dispatch, product, params, productDetails]);
+  }, [dispatch, process, params, processDetails]);
 
   const priceChangeHandler = (e) => setQty(e.target.value);
 
-  const addToCartHandler = () => {
-    dispatch(addToCart(product._id, qty));
-    navigate("/cart", { replace: true });
+  const moveToAnalyticsHandler = () => {
+    localStorage.setItem("selectedProcessId", process._id);
+    navigate(`/robot/${process.robot._id}`);
+
   };
 
-  console.log("productdetails", productDetails);
+  // const addToCartHandler = () => {
+  //   dispatch(addToCart(process._id, qty));
+  //   navigate("/cart", { replace: true });
+  // };
+
   return (
     <div className="productscreen">
       {loading ? (
@@ -44,27 +49,27 @@ const ProductScreen = () => {
         <React.Fragment>
           <div className="productscreen__left">
             <div className="left__image">
-              <img src={product.imageUrl} alt={product.Name} />
+              <img src={process.imageUrl} alt={process.Name} />
             </div>
             <div className="left__info">
-              <p className="left__name">{product.name}</p>
-              <p>Price: {product.price}</p>
-              <p>{product.description}</p>
+              <p className="left__name">{process.name}</p>
+              <p>Active: {process.price}</p>
+              <p>{process.description}</p>
             </div>
           </div>
           <div className="productscreen__right">
             <div className="right__info">
               <p>
-                Price: <span>${product.price}</span>
+                Active: <span>${process.price}</span>
               </p>
               <p>
                 Status:
-                <span>{product.count > 0 ? "In stock" : "Out of stock"}</span>
+                <span>{process.active ? "Active" : "Offline"}</span>
               </p>
               <p>
                 Qty
                 <select value={qty} onChange={priceChangeHandler}>
-                  {[...Array(product.countInStock).keys()].map((x) => (
+                  {[...Array(process.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
                     </option>
@@ -72,8 +77,8 @@ const ProductScreen = () => {
                 </select>
               </p>
               <p>
-                <button type="button" onClick={addToCartHandler}>
-                  Add to cart
+                <button type="button" onClick={moveToAnalyticsHandler}>
+                  See process details
                 </button>
               </p>
             </div>

@@ -1,7 +1,7 @@
 // require("dotenv").config();
 const express = require("express");
-const productRoutes = require("./routes/productRoutes");
 const usersRoutes = require("./routes/usersRoutes");
+const processesRoutes = require("./routes/processesRoutes")
 const connectDB = require("./config/db");
 
 (async function () {
@@ -12,13 +12,14 @@ const connectDB = require("./config/db");
   app.use(express.json());
 
   app.get("/", (req, res) => {
-    console.log("checkpoint app.get");
+
     res.json({ message: "API running..." });
   });
 
-  app.use("/api/products", productRoutes);
+  app.use("/api/processes", processesRoutes);
 
   app.use("/api/users", usersRoutes);
+
 
   const PORT = 
   // process.env.PORT || 
