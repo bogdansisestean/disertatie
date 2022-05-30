@@ -13,13 +13,13 @@ import SignUpScreen from "./screens/SignUpScreen";
 import NavBar from "./components/Navbar";
 import BackDrop from "./components/BackDrop";
 import SideDrawer from "./components/SideDrawer";
-
+// import uArmSDK from "./sdk-js-robot/uarm/sdk
 //Hooks
 import { useSelector } from "react-redux";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
-
+ 
   const getUser = useSelector((state) => state.loggedUser);
   const { user, loggedIn } = getUser;
 
@@ -29,7 +29,7 @@ function App() {
   const sideDropHideHandler = () => {
     setSideToggle(false);
   };
-
+// console.log(uArmSDK)
   return (
     <Router>
       <NavBar click={sideDropShowHandler} />

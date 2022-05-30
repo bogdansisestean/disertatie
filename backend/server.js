@@ -2,7 +2,10 @@
 const express = require("express");
 const productRoutes = require("./routes/productRoutes");
 const usersRoutes = require("./routes/usersRoutes");
+const robotRoutes = require("./routes/robotRoutes")
 const connectDB = require("./config/db");
+const { use } = require("./routes/productRoutes");
+
 
 (async function () {
   await connectDB();
@@ -19,6 +22,8 @@ const connectDB = require("./config/db");
   app.use("/api/products", productRoutes);
 
   app.use("/api/users", usersRoutes);
+
+  app.use("/robot/data", robotRoutes)
 
   const PORT = 
   // process.env.PORT || 
