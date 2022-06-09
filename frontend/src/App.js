@@ -16,6 +16,7 @@ import SideDrawer from "./components/SideDrawer";
 // import uArmSDK from "./sdk-js-robot/uarm/sdk
 //Hooks
 import { useSelector } from "react-redux";
+import Analytics from "./screens/analytics/Analytics";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
           <Route exact path="/product/:id" element={<ProductScreen />} />
+          <Route exact path="/robot/:id" element={<Analytics />} />
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/login" element={<LogInScreen />} />
           <Route exact path="/sign-up" element={<SignUpScreen />} />

@@ -1,31 +1,34 @@
 require("dotenv").config();
-
-const productData = require("./data/products");
+ 
 const usersData = require("./data/dummy-users");
+const processesData = require("./data/processes")
 const connectDB = require("./config/db");
-const Product = require("./models/Product");
 const Users = require("./models/Users");
-
+const Processes = require("./models/Processes")
+ 
 const importData = async () => {
-  try {
-    await Product.deleteMany({});
-
-    await Product.insertMany(productData);
-
-    await Users.deleteMany({});
-
-    await Users.insertMany(usersData);
-
-    console.log("Data Import Success");
-
-    process.exit();
-  } catch (error) {
-    console.error("Error with data import", error);
-    process.exit(1);
-  }
+ try {
+   await Processes.deleteMany({});
+ 
+   await Processes.insertMany(processesData);
+ 
+   await Users.deleteMany({});
+ 
+   await Users.insertMany(usersData);
+ 
+   console.log("Data Import Success");
+ 
+   process.exit();
+ } catch (error) {
+   console.error("Error with data import", error);
+   process.exit(1);
+ }
 };
-
+ 
 (async function () {
-  await connectDB();
-  await importData();
+ await connectDB();
+ await importData();
 })();
+ 
+ 
+

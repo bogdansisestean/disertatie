@@ -28,7 +28,7 @@ const NavBar = (props) => {
     <nav className="navbar">
       <div className="navbar__logo">
         <Link to="/login">
-          <h2>{user ? `${user.userName}'s Shopping Cart` : "Not logged in"}</h2>
+          <h2>{user ? `${user.userName}'s Control interface` : "Not logged in"}</h2>
         </Link>
       </div>
 
@@ -43,7 +43,7 @@ const NavBar = (props) => {
           </Link>
         </li>
         <li>
-          <Link to="/">Shop</Link>
+          <Link to="/">See All Processes</Link>
         </li>
         {loggedIn ? (
           <li onClick={onLogOutHandler}>

@@ -1,10 +1,10 @@
 // require("dotenv").config();
 const express = require("express");
-const productRoutes = require("./routes/productRoutes");
+const processesRoutes = require("./routes/processesRoutes");
 const usersRoutes = require("./routes/usersRoutes");
 const robotRoutes = require("./routes/robotRoutes")
 const connectDB = require("./config/db");
-const { use } = require("./routes/productRoutes");
+const { use } = require("./routes/processesRoutes");
 
 
 (async function () {
@@ -19,7 +19,7 @@ const { use } = require("./routes/productRoutes");
     res.json({ message: "API running..." });
   });
 
-  app.use("/api/products", productRoutes);
+  app.use("/api/processes", processesRoutes);
 
   app.use("/api/users", usersRoutes);
 
