@@ -1,20 +1,27 @@
 import React from 'react'
 import { Line, Pie } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Chart as ChartJS } from 'chart.js/auto'
-import { Chart }            from 'react-chartjs-2'
+import { Chart } from 'react-chartjs-2'
+
+import "./Analytics.css"
 
 const Analytics = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const getProcesses = useSelector((state) => state.getProcesses);
-  const processes = getProcesses.processes;
+  const process = location.state.process;
 
-  const processDetails = processes.filter(
-    (process) => process.robot._id === params.id
-  );
+  const robot = process.robot;
+  const robotName = robot.name;
+  const robotImg = robot.imageurl;
+  const robotId = robot._id
 
+  const sensor1 = robot.sensor1;
+  const sensor2 = robot.sensor2;
+  const sensor3 = robot.sensor3;
 
   const data = {
     labels: [
@@ -64,22 +71,22 @@ const Analytics = () => {
       }
     },
     scales: {
-      xAxes: 
-        {
-          ticks: { display: false }
-        }
-      
+      xAxes:
+      {
+        ticks: { display: false }
+      }
+
     }
   };
 
-  const pieData = {
+  const pieDataFinnishedProcesses = {
     labels: [
       'January',
       'February',
       'March'
     ],
     datasets: [{
-      data: [300, 50, 100],
+      data: [36200, 42000, 51000],
       backgroundColor: [
         'rgba(255,0,0, 1)',
         '#36A2EB',
@@ -88,18 +95,71 @@ const Analytics = () => {
     }]
   };
 
-  const robot = processDetails[0].robot;
-  const robotName = robot.name;
-  const robotImg = robot.imageurl;
-  const robotId = robot._id
+  const pieDataEnergy = {
+    labels: [
+      'January',
+      'February',
+      'March'
+    ],
+    datasets: [{
+      data: [1210, 1330, 2103],
+      backgroundColor: [
+        'rgba(255,0,0, 1)',
+        '#36A2EB',
+        '#FFCE56'
+      ]
+    }]
+  };
 
-  const sensor1 = robot.sensor1;
-  const sensor2 = robot.sensor2;
-  const sensor3 = robot.sensor3;
+  const pieDataFailures = {
+    labels: [
+      'January',
+      'February',
+      'March'
+    ],
+    datasets: [{
+      data: [2, 5, 13],
+      backgroundColor: [
+        'rgba(255,0,0, 1)',
+        '#36A2EB',
+        '#FFCE56'
+      ]
+    }]
+  };
+
+  const pieDataMaintenance = {
+    labels: [
+      'January',
+      'February',
+      'March'
+    ],
+    datasets: [{
+      data: [10, 25, 13],
+      backgroundColor: [
+        'rgba(255,0,0, 1)',
+        '#36A2EB',
+        '#FFCE56'
+      ]
+    }]
+  };
+
+
+
+
+
+
+
+
   return (
     <React.Fragment>
-      <Line data={data} options={options} />
-      <Pie data={pieData} options={options} />
+      <div className='analytics__screen'>
+        <div className='analytics__screen__left'><h2 className='analytics__heading'>Successfully finnished processes</h2><Pie data={pieDataFinnishedProcesses} options={options} /></div>
+        <div className='analytics__screen__right'><h2 className='analytics__heading'>Energy consumption</h2> <Pie data={pieDataEnergy} options={options} /></div>
+      </div >
+      <div className='analytics__screen'>
+        <div className='analytics__screen__left'><h2 className='analytics__heading'>Process failures</h2><Pie data={pieDataFailures} options={options} /></div>
+        <div className='analytics__screen__right'><h2 className='analytics__heading'>Maintenance time required</h2> <Pie data={pieDataMaintenance} options={options} /></div>
+      </div>
     </React.Fragment>
   )
 }

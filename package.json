@@ -21,7 +21,8 @@
     "path": "^0.12.7",
     "react-loader-spinner": "^5.1.0",
     "react-scripts": "^5.0.1",
-    "uarm-sdk-javascript": "^1.0.0"
+    "uarm-sdk-javascript": "^1.0.0",
+    "ws": "^8.8.0"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",

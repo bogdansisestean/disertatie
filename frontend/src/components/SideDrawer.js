@@ -21,10 +21,10 @@ const SideDrawer = ({ show, click }) => {
     <div className={sideDrawerClass.join(" ")}>
       <ul className="sidedrawer__links" onClick={click}>
         <li>
-          <Link to="/cart">
+          <Link to="/active-processes">
             <i className="fas fa-shopping-cart" />
             <span>
-              Cart <span className="sidedrawer__cartbadge">{getCartCount()}</span>
+              Active Processes <span className="sidedrawer__cartbadge">{getCartCount()}</span>
             </span>
           </Link>
         </li>

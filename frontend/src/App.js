@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-route
 
 //Screens
 import HomeScreen from "./screens/HomeScreen";
-import ProductScreen from "./screens/ProductScreen";
-import CartScreen from "./screens/CartScreen";
+import ProcessScreen from "./screens/PorcessScreen";
+import CartScreen from "./screens/ActiveProcesses";
 import LogInScreen from "./screens/LogInScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 
@@ -17,10 +17,11 @@ import SideDrawer from "./components/SideDrawer";
 //Hooks
 import { useSelector } from "react-redux";
 import Analytics from "./screens/analytics/Analytics";
+import RobotScreen from "./screens/robot/RobotScreen";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
- 
+
   const getUser = useSelector((state) => state.loggedUser);
   const { user, loggedIn } = getUser;
 
@@ -30,7 +31,7 @@ function App() {
   const sideDropHideHandler = () => {
     setSideToggle(false);
   };
-// console.log(uArmSDK)
+  // console.log(uArmSDK)
   return (
     <Router>
       <NavBar click={sideDropShowHandler} />
@@ -39,9 +40,10 @@ function App() {
       <main>
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
-          <Route exact path="/product/:id" element={<ProductScreen />} />
-          <Route exact path="/robot/:id" element={<Analytics />} />
-          <Route exact path="/cart" element={<CartScreen />} />
+          <Route exact path="/process/:id" element={<ProcessScreen />} />
+          <Route exact path="/robot/:id" element={<RobotScreen />} />
+          <Route exact path="/analytics/:id" element={<Analytics />} />
+          <Route exact path="/active-processes" element={<CartScreen />} />
           <Route exact path="/login" element={<LogInScreen />} />
           <Route exact path="/sign-up" element={<SignUpScreen />} />
         </Routes>

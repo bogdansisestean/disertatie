@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
  
 //Components
-import Processes from "../components/Product";
+import Processes from "../components/Process";
  
 //Actions
 import { getProcesses as listProcesses } from "../redux/actions/processActions";
@@ -26,7 +26,7 @@ function HomeScreen() {
    return (
      <div className="homescreen">
        <h2 className="homescreen__title">Processes</h2>
-       <div className="homescreen__products">
+       <div className="homescreen__processes">
          {loading ? (
            <h2>Loading...</h2>
          ) : error ? (
@@ -39,7 +39,7 @@ function HomeScreen() {
                description={process.description}
                price={process.price}
                imageUrl={process.imageUrl}
-               productId={process._id}
+               processId={process._id}
              />
            ))
          )}

@@ -25,8 +25,22 @@ const { use } = require("./routes/processesRoutes");
 
   app.use("/robot/data", robotRoutes)
 
-  const PORT = 
-  // process.env.PORT || 
-  5000;
+  const PORT = 5000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+  const WebSocket = require('ws');
+
+  const wss = new WebSocket.Server({ port: 8080 });
+
+  wss.on('connection', function connection(ws) {
+    ws.on('message', function incoming(data) {
+      wss.clients.forEach(function each(client) {
+        if (client !== ws && client.readyState === WebSocket.OPEN) {
+          client.send(data);
+          // console.log('data', data);
+        }
+      });
+    });
+  });
+
 })();

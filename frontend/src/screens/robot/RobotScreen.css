@@ -1,0 +1,56 @@
+.robot__screen {
+	max-width: 1300px;
+	margin: 1rem auto;
+	display: flex;
+}
+.robot__screen {
+	display: flex;
+}
+
+.left__robot__details {
+	margin: 1rem;
+	flex: 0.6 1;
+}
+.right__robot__details {
+	margin: 1rem;
+	flex: 0.4 1;
+	background: #fff;
+	height: -moz-fit-content;
+	height: fit-content;
+	font-size: 0.9rem;
+}
+.right__robot__details > p,
+.right__info > p {
+	padding: 1rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.robot__name {
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+.right__robot__details > p > button {
+	grid-column: 1/-1;
+	width: 100%;
+	padding: 10px 16px;
+	background: #171717;
+	color: #f4f4f4;
+	border: 1px solid #171717;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.end__effector__details {
+	max-width: 1300px;
+	margin: 1rem auto;
+	display: flex;
+}
+.end__effector__area {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	max-width: 1300px;
+	margin: 1rem auto;
+}
+@media (max-width: 960px) {
+	.robot__screen {
+		flex-direction: column;
+	}
+}

@@ -14,8 +14,8 @@ const NavBar = (props) => {
   const { cartItems } = cart;
   const { user, loggedIn } = getUser;
 
-  const getCartCount = () => {
-    return cartItems.reduce((qty, item) => qty + Number(item.qty), 0);
+  const getActiveProcessesCount = () => {
+    return cartItems.length;
   };
   // const onLoginUserHeandler = () => {
   //   navigate("/login", { replace: true });
@@ -34,11 +34,11 @@ const NavBar = (props) => {
 
       <ul className="navbar__links">
         <li>
-          <Link to="/cart" className="cart__link">
+          <Link to="/active-processes" className="cart__link">
             <i className="fas fa-shopping-cart" />
             <span>
-              Cart
-              <span className="cartlogo__badge">{getCartCount()}</span>
+            Active Processes
+              <span className="cartlogo__badge">{getActiveProcessesCount()}</span>
             </span>
           </Link>
         </li>

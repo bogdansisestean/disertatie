@@ -1,0 +1,10 @@
+.card {
+	width: 90%;
+	padding: 1rem;
+	background: white;
+	box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
+	margin: 8px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}

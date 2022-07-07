@@ -10,23 +10,23 @@
   margin-left: 8px;
 }
 
-.homescreen__products {
+.homescreen__processes {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
 @media (max-width: 1232px) {
-  .homescreen__products {
+  .homescreen__processes {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 960px) {
-  .homescreen__products {
+  .homescreen__processes {
     grid-template-columns: repeat(2, auto);
   }
 }
 @media (max-width: 630px) {
-  .homescreen__products {
+  .homescreen__processes {
     grid-template-columns: 1fr;
   }
 }
